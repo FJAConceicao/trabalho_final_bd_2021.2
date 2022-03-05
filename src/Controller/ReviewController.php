@@ -21,6 +21,17 @@ class ReviewController extends AppController
     {
         $review = $this->paginate($this->Review);
 
+
+        $ade = $this->Review->query('SELECT Product.name, AVG(Review.rating)
+        FROM Review
+        INNER JOIN Product ON Product.id = Review.fk_Product_Id
+        GROUP BY Product.name
+        ORDER BY AVG(Review.rating) DESC
+        
+        ');
+
+        debug($ade);
+
         $this->set(compact('review'));
     }
 

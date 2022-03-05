@@ -30,3 +30,40 @@
         </tr>
     </table>
 </div>
+<div class="store index large-9 medium-8 columns content">
+    <h3><?= __('Produtos mais vendidos desta loja') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('count') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($results as $store): ?>
+            <tr>
+                <td><?= h($store['name']) ?></td>
+                <td><?= h($store['COUNT(*)']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+
+<div class="store index large-9 medium-8 columns content">
+    <h3><?= __('URLs das Lojas que produzem e vendem ao mesmo tempo') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col"><?= $this->Paginator->sort('url') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($urls as $url): ?>
+            <tr>
+                <td><?= h($url['url']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

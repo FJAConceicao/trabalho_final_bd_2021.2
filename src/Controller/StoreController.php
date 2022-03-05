@@ -2,7 +2,9 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
-
+use Cake\ORM\TableRegistry;
+use PDO;
+use Cake\Datasource\ConnectionManager;
 /**
  * Store Controller
  *
@@ -21,6 +23,7 @@ class StoreController extends AppController
     {
         $store = $this->paginate($this->Store);
 
+
         $this->set(compact('store'));
     }
 
@@ -37,7 +40,41 @@ class StoreController extends AppController
             'contain' => [],
         ]);
 
+       // $sells = TableRegistry::get('Store')->find()->join(['sells']);
+       $hostname = "localhost";
+       $banco = "cake_cms";
+       $username = "cakephp";
+       $password = "Cake#123";
+
+       $connection = ConnectionManager::get('default');
+       $results = $connection->execute('SELECT store.name,manufacturer.name, COUNT(*)
+       FROM store
+       INNER JOIN sells ON store.id = sells.fk_Store_Id
+       INNER JOIN product ON product.id = sells.fk_Product_Id 
+       INNER JOIN manufacturer ON manufacturer.id = fk_Manufacturer_id
+       where manufacturer.name <>"" and store.id = 1
+       GROUP BY store.name,manufacturer.name 
+       Order by COUNT(*) DESC
+       ')->fetchAll('assoc');
+
+        $urls = $connection->execute('SELECT store.url  
+        FROM store
+        where url <> "" and url is not null
+        UNION
+        SELECT manufacturer.url
+        FROM manufacturer
+        where url <> "" and url is not null
+        UNION
+        SELECT product.source_url
+        FROM product
+        where source_url <> "" and source_url is not null        
+        ')->fetchAll('assoc');
+
         $this->set('store', $store);
+        $this->set('results', $results);
+        $this->set('urls', $urls);
+
+
     }
 
     /**

@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
 
 /**
  * Product Controller
@@ -36,12 +37,15 @@ class ProductController extends AppController
         $product = $this->Product->get($id);
         //$product2 = $this->paginate($this->Product);
         $product2 = $this->Product->find()->where(['fk_Manufacturer_Id' => $product->fk_info_info_PK]);
+
+        $review = TableRegistry::get('Review')->find();
         
-        
-        //debug($product2);
+        $review = $review->where(['fk_Product_Id' => $product->fk_info_info_PK])->all();
 
         $this->set('product', $product);
         $this->set('product2', $product2);
+        $this->set('review', $review);
+        
     }
 
     /**

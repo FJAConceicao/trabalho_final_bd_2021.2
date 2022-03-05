@@ -21,6 +21,16 @@ class UserController extends AppController
     {
         $user = $this->paginate($this->User);
 
+        $ade = $this->User->query('SELECT User.city, COUNT(Review.fk_Product_id)
+        FROM Review
+        INNER JOIN User ON User.id = Review.fk_User_id
+        where city <> ""
+        GROUP BY User.city
+        Order by COUNT(Review.fk_Product_id) DESC
+        ');
+
+        debug($ade);
+
         $this->set(compact('user'));
     }
 
