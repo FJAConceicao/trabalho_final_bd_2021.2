@@ -57,3 +57,24 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
+
+<div class="review index large-9 medium-8 columns content">
+    <h3><?= __('Quantidade de Reviews por Cidade') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('count') ?></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($results as $result): ?>
+            <tr>
+                <td><?= h($result['city']) ?></td>
+                <td><?= h($result['COUNT(review.fk_Product_id)']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

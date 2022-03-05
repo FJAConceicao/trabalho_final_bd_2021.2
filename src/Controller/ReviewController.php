@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Review Controller
@@ -22,17 +23,20 @@ class ReviewController extends AppController
         $review = $this->paginate($this->Review);
 
 
-        $ade = $this->Review->query('SELECT Product.name, AVG(Review.rating)
-        FROM Review
-        INNER JOIN Product ON Product.id = Review.fk_Product_Id
-        GROUP BY Product.name
-        ORDER BY AVG(Review.rating) DESC
+        $connection = ConnectionManager::get('default');
+        $results = $connection->execute('SELECT user.city, COUNT(review.fk_Product_id)
+        FROM review
+        INNER JOIN user ON user.id = review.fk_User_id
+        where city <> ""
+        GROUP BY user.city
+        Order by COUNT(review.fk_Product_id) DESC
         
-        ');
-
-        debug($ade);
+        ')->fetchAll('assoc');
 
         $this->set(compact('review'));
+
+        $this->set('results', $results);
+
     }
 
     /**

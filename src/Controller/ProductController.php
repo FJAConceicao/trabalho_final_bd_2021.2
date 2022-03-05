@@ -3,6 +3,8 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 use Cake\ORM\TableRegistry;
+use Cake\Datasource\ConnectionManager;
+
 
 /**
  * Product Controller
@@ -22,7 +24,21 @@ class ProductController extends AppController
     {
         $product = $this->paginate($this->Product);
 
+        $connection = ConnectionManager::get('default');
+        $results = $connection->execute('SELECT product.name, AVG(review.rating)
+        FROM review
+        INNER JOIN product ON product.id = review.fk_Product_Id
+        GROUP BY product.name
+        ORDER BY AVG(review.rating) DESC
+        
+        
+        ')->fetchAll('assoc');
+
+        //debug($results);
+
         $this->set(compact('product'));
+        $this->set('results', $results);
+
     }
 
     /**
