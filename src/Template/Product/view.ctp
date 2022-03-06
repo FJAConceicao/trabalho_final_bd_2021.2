@@ -133,5 +133,23 @@
 </div>
 </div>
 
-
+<div class="store index large-9 medium-8 columns content">
+    <h3><?= __('Produtos que possuem uma média de reviews melhores do que este produto') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col"><?= $this->Paginator->sort('Name Product') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Média de reviews') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($products as $product): ?>
+            <tr>
+                <td><?= h($product['name']) ?></td>
+                <td><?= h($product['AVG(review.rating)']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 

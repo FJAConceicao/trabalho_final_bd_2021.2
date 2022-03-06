@@ -31,7 +31,6 @@ class ProductController extends AppController
         GROUP BY product.name
         ORDER BY AVG(review.rating) DESC
         
-        
         ')->fetchAll('assoc');
 
         //debug($results);
@@ -58,9 +57,21 @@ class ProductController extends AppController
         
         $review = $review->where(['fk_Product_Id' => $product->fk_info_info_PK])->all();
 
+        // Query para buscar produtos que possuem uma média de reviews melhores do que este produto
+        $connection = ConnectionManager::get('default');
+        $products = $connection->execute('SELECT product.name, AVG(review.rating)
+        FROM review
+        INNER JOIN product ON product.id = review.fk_Product_Id
+        GROUP BY product.name
+        HAVING AVG(review.rating) > ALL (SELECT AVG(review.rating)
+                                        FROM review
+                                        WHERE review.fk_Product_Id = '. $id .')
+                                        ORDER BY AVG(review.rating) DESC')->fetchAll('assoc');        
+
         $this->set('product', $product);
         $this->set('product2', $product2);
         $this->set('review', $review);
+        $this->set('products', $products);
         
     }
 
