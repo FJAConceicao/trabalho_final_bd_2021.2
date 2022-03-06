@@ -34,3 +34,23 @@
         </tr>
     </table>
 </div>
+
+<div class="store index large-9 medium-8 columns content">
+    <h3><?= __('Número de reviews deste usuário por produtora') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col"><?= $this->Paginator->sort('Name Manufacturer') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Quantity Reviews') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($reviews as $review): ?>
+            <tr>
+                <td><?= h($review['name']) ?></td>
+                <td><?= h($review['COUNT(*)']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

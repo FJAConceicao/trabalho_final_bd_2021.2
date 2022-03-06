@@ -52,7 +52,7 @@ class StoreController extends AppController
        INNER JOIN sells ON store.id = sells.fk_Store_Id
        INNER JOIN product ON product.id = sells.fk_Product_Id 
        INNER JOIN manufacturer ON manufacturer.id = fk_Manufacturer_id
-       where manufacturer.name <>"" and store.id = 1
+       where manufacturer.name <>"" and store.id ='. $id.'
        GROUP BY store.name,manufacturer.name 
        Order by COUNT(*) DESC
        ')->fetchAll('assoc');

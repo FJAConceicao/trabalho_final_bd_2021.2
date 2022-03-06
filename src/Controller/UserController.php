@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * User Controller
@@ -46,8 +47,24 @@ class UserController extends AppController
         $user = $this->User->get($id, [
             'contain' => [],
         ]);
+        
+        // Query para número de reviews de um usuário por produtora
+        $connection = ConnectionManager::get('default');
+        $reviews = $connection->execute('SELECT user.username, manufacturer.name, COUNT(*)
+        FROM product
+            INNER JOIN manufacturer ON manufacturer.id = product.fk_Manufacturer_Id
+            INNER JOIN review ON product.id = review.fk_Product_Id
+            INNER JOIN user ON user.id = review.fk_User_id
+        WHERE manufacturer.name <> "" AND user.id ='. $id.'
+        GROUP BY user.username, manufacturer.name
+        ORDER BY user.username
+        ')->fetchAll('assoc');
 
+        //debug($results);
+        
         $this->set('user', $user);
+        $this->set('reviews', $reviews); 
+        
     }
 
     /**

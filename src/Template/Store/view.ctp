@@ -30,8 +30,9 @@
         </tr>
     </table>
 </div>
+
 <div class="store index large-9 medium-8 columns content">
-    <h3><?= __('Produtos mais vendidos desta loja') ?></h3>
+    <h3><?= __('Produtoras que mais vendem desta loja') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
