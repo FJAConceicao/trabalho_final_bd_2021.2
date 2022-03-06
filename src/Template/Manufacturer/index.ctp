@@ -47,3 +47,24 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
+
+<div class="product index large-9 medium-8 columns content">
+    <h3><?= __('Quantidade de produtos de cada produtora') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('COUNT(product.id)') ?></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($results as $result): ?>
+            <tr>
+                <td><?= h($result['name']) ?></td>
+                <td><?= h($result['COUNT(product.id)']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

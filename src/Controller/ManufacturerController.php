@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Datasource\ConnectionManager;
 
 /**
  * Manufacturer Controller
@@ -21,7 +22,19 @@ class ManufacturerController extends AppController
     {
         $manufacturer = $this->paginate($this->Manufacturer);
 
+        $connection = ConnectionManager::get('default');
+        $results = $connection->execute('SELECT manufacturer.name, COUNT(product.id)
+        FROM product
+        INNER JOIN manufacturer ON product.fk_Manufacturer_Id = manufacturer.Id
+        GROUP BY manufacturer.name
+        ORDER BY manufacturer.name
+        ')->fetchAll('assoc');
+
+
+        //debug($results);
         $this->set(compact('manufacturer'));
+        $this->set('results', $results);
+
     }
 
     /**

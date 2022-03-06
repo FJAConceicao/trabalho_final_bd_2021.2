@@ -29,7 +29,7 @@ class UserController extends AppController
         Order by COUNT(Review.fk_Product_id) DESC
         ');
 
-        debug($ade);
+        //debug($ade);
 
         $this->set(compact('user'));
     }
