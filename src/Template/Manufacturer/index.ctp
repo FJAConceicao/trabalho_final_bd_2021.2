@@ -15,7 +15,6 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('url') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -23,16 +22,17 @@
         </thead>
         <tbody>
             <?php foreach ($manufacturer as $manufacturer): ?>
-            <tr>
-                <td><?= $this->Number->format($manufacturer->id) ?></td>
-                <td><?= h($manufacturer->name) ?></td>
-                <td><?= h($manufacturer->url) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $manufacturer->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $manufacturer->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $manufacturer->id], ['confirm' => __('Are you sure you want to delete # {0}?', $manufacturer->id)]) ?>
-                </td>
-            </tr>
+                <?php if ($manufacturer->name != ""): ?>
+                    <tr>
+                        <td><?= h($manufacturer->name) ?></td>
+                        <td><?= h($manufacturer->url) ?></td>
+                        <td class="actions">
+                            <?= $this->Html->link(__('View'), ['action' => 'view', $manufacturer->id]) ?>
+                            <?= $this->Html->link(__('Edit'), ['action' => 'edit', $manufacturer->id]) ?>
+                            <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $manufacturer->id], ['confirm' => __('Are you sure you want to delete # {0}?', $manufacturer->id)]) ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
             <?php endforeach; ?>
         </tbody>
     </table>
@@ -53,17 +53,19 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('COUNT(product.id)') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Produtora') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Quantidade') ?></th>
 
             </tr>
         </thead>
         <tbody>
             <?php foreach ($results as $result): ?>
-            <tr>
-                <td><?= h($result['name']) ?></td>
-                <td><?= h($result['COUNT(product.id)']) ?></td>
-            </tr>
+                <?php if ($result['name'] != ""): ?>
+                    <tr>
+                        <td><?= h($result['name']) ?></td>
+                        <td><?= h($result['COUNT(product.id)']) ?></td>
+                    </tr>
+                <?php endif; ?>
             <?php endforeach; ?>
         </tbody>
     </table>

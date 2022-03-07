@@ -15,7 +15,6 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('name') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('url') ?></th>
                 <th scope="col" class="actions"><?= __('Actions') ?></th>
@@ -24,7 +23,6 @@
         <tbody>
             <?php foreach ($store as $store): ?>
             <tr>
-                <td><?= $this->Number->format($store->id) ?></td>
                 <td><?= h($store->name) ?></td>
                 <td><?= h($store->url) ?></td>
                 <td class="actions">

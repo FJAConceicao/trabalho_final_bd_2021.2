@@ -25,16 +25,28 @@
             <td><?= h($review->text) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id User') ?></th>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($review->Id) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Fk User Id') ?></th>
             <td><?= $this->Number->format($review->fk_User_Id) ?></td>
         </tr>
         <tr>
-            <th scope="row"><?= __('Id Product') ?></th>
+            <th scope="row"><?= __('Fk Product Id') ?></th>
             <td><?= $this->Number->format($review->fk_Product_Id) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Rating') ?></th>
             <td><?= $this->Number->format($review->rating) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Date') ?></th>
+            <td><?= h($review->date) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Did Purchase') ?></th>
+            <td><?= $review->did_purchase ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
 </div>

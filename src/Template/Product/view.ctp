@@ -36,26 +36,32 @@
             <th scope="row"><?= __('Description') ?></th>
             <td><?= h($product->description) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Categories') ?></th>
-            <td><?= h($product->categories) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($product->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Fk Info Info PK') ?></th>
-            <td><?= $this->Number->format($product->fk_info_info_PK) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Fk Manufacturer Id') ?></th>
-            <td><?= $this->Number->format($product->fk_Manufacturer_Id) ?></td>
-        </tr>
     </table>
 </div>
 
 <div class="review index large-9 medium-8 columns content">
+    <h3><?= __('Informações do produto') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col"><?= $this->Paginator->sort('Dimension') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Weight') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($infosProduct as $info): ?>
+                <tr>
+                    <td><?= h($info['dim']) ?></td>
+                    <td><?= h($info['wei']) ?></td>
+                </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+<divl style="float: right;" class="review index large-9 medium-8 columns content">
     <h3><?= __('Comentários e notas relacionados a este produto') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
@@ -74,9 +80,8 @@
         </tbody>
     </table>
 </div>
-</div>
 
-<divl style="float: right;" class=" store index large-9 medium-8 columns content">
+<div class=" store index large-9 medium-8 columns content">
     <h3><?= __('Produtos que possuem uma média de reviews melhores do que este produto') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>

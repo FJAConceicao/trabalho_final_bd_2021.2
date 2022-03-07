@@ -20,8 +20,8 @@
             echo $this->Form->control('brand');
             echo $this->Form->control('source_url');
             echo $this->Form->control('description');
-            echo $this->Form->control('fk_info_info_PK');
-            echo $this->Form->control('fk_Manufacturer_Id');
+            echo $this->Form->control('Id info');
+            echo $this->Form->control('Id produtora');
             echo $this->Form->control('categories');
         ?>
     </fieldset>

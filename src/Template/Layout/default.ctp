@@ -45,11 +45,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <ul class="right">
                 <li><?= $this->Html->link(__('/')) ?></li>
                 <li><?= $this->Html->link(__('Manufacturer'), ['controller' => 'Manufacturer']) ?></li>
-                <li><?= $this->Html->link(__('Info'), ['controller' => 'Info']) ?></li>
                 <li><?= $this->Html->link(__('User'), ['controller' => 'User']) ?></li>
                 <li><?= $this->Html->link(__('Product'), ['controller' => 'Product']) ?></li>
                 <li><?= $this->Html->link(__('Review'), ['controller' => 'Review']) ?></li>
-                <li><?= $this->Html->link(__('Sells'), ['controller' => 'Sells']) ?></li>
                 <li><?= $this->Html->link(__('Store'), ['controller' => 'Store']) ?></li>
             </ul>
         </div>

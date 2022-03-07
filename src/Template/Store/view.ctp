@@ -24,10 +24,6 @@
             <th scope="row"><?= __('Url') ?></th>
             <td><?= h($store->url) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($store->id) ?></td>
-        </tr>
     </table>
 </div>
 
@@ -36,8 +32,8 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('count') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Produtora') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Quantidade de vendas') ?></th>
             </tr>
         </thead>
         <tbody>

@@ -15,6 +15,11 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('fk_User_Id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('fk_Product_Id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('date') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('did_purchase') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('rating') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('title') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('text') ?></th>
@@ -24,13 +29,18 @@
         <tbody>
             <?php foreach ($review as $review): ?>
             <tr>
+                <td><?= $this->Number->format($review->id) ?></td>
+                <td><?= $this->Number->format($review->fk_User_Id) ?></td>
+                <td><?= $this->Number->format($review->fk_Product_Id) ?></td>
+                <td><?= h($review->date) ?></td>
+                <td><?= h($review->did_purchase) ?></td>
                 <td><?= $this->Number->format($review->rating) ?></td>
                 <td><?= h($review->title) ?></td>
                 <td><?= h($review->text) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $review->Id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $review->Id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $review->Id], ['confirm' => __('Are you sure you want to delete # {0}?', $review->Id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $review->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $review->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $review->id], ['confirm' => __('Are you sure you want to delete # {0}?', $review->id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
@@ -53,8 +63,8 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('Cidade') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Quantidade') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('count') ?></th>
 
             </tr>
         </thead>

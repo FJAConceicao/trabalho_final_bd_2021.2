@@ -55,6 +55,11 @@ class ProductController extends AppController
         // Pegando os dados do produto
         $product = $this->Product->get($id);
 
+        // Query para buscar as infos do produto
+        $infosProduct = $connection->execute('SELECT info.dimension as dim, info.weight as wei
+        FROM info INNER JOIN product ON info.id = product.fk_info_info_Pk
+        WHERE product.id = '.$id.'')->fetchAll('assoc');
+
         // Query para buscar todos os comentários e notas relacionados a este produto
         $commentsNotesProduct = $connection->execute('SELECT product.name, review.text, review.rating
         FROM review
@@ -76,7 +81,7 @@ class ProductController extends AppController
         $this->set('product', $product);
         $this->set('products', $products);
         $this->set('commentsNotesProduct', $commentsNotesProduct);
-        
+        $this->set('infosProduct', $infosProduct);
     }
 
     /**

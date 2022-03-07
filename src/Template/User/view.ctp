@@ -14,7 +14,7 @@
     </ul>
 </nav>
 <div class="user view large-9 medium-8 columns content">
-    <h3><?= h($user->id) ?></h3>
+    <h3><?= h($user->username) ?></h3>
     <table class="vertical-table">
         <tr>
             <th scope="row"><?= __('Username') ?></th>
@@ -28,10 +28,6 @@
             <th scope="row"><?= __('Province') ?></th>
             <td><?= h($user->province) ?></td>
         </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($user->id) ?></td>
-        </tr>
     </table>
 </div>
 
@@ -40,8 +36,8 @@
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('Name Manufacturer') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('Quantity Reviews') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Produtora') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Quantidade') ?></th>
             </tr>
         </thead>
         <tbody>

@@ -24,6 +24,10 @@
             <th scope="row"><?= __('Url') ?></th>
             <td><?= h($manufacturer->url) ?></td>
         </tr>
+        <tr>
+            <th scope="row"><?= __('Id') ?></th>
+            <td><?= $this->Number->format($manufacturer->id) ?></td>
+        </tr>
     </table>
 </div>
 

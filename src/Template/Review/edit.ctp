@@ -9,8 +9,8 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $review->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $review->id)]
+                ['action' => 'delete', $review->Id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $review->Id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Review'), ['action' => 'index']) ?></li>
