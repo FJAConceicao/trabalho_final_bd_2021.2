@@ -24,6 +24,7 @@ class ProductController extends AppController
     {
         $product = $this->paginate($this->Product);
 
+        // Query para consultar a média da nota do review de cada produto
         $connection = ConnectionManager::get('default');
         $results = $connection->execute('SELECT product.name, AVG(review.rating)
         FROM review
@@ -49,17 +50,21 @@ class ProductController extends AppController
      */
     public function view($id = null)
     {
-        $product = $this->Product->get($id);
-        //$product2 = $this->paginate($this->Product);
-        $product2 = $this->Product->find()->where(['fk_Manufacturer_Id' => $product->fk_info_info_PK]);
+        $connection = ConnectionManager::get('default');
 
-        $review = TableRegistry::get('Review')->find();
-        
-        $review = $review->where(['fk_Product_Id' => $product->fk_info_info_PK])->all();
+        // Pegando os dados do produto
+        $product = $this->Product->get($id);
+
+        // Query para buscar todos os comentários e notas relacionados a este produto
+        $commentsNotesProduct = $connection->execute('SELECT product.name, review.text, review.rating
+        FROM review
+        RIGHT OUTER JOIN product
+        ON review.fk_Product_id = product.id
+        WHERE product.id = '.$id.'
+        ')->fetchAll('assoc');
 
         // Query para buscar produtos que possuem uma média de reviews melhores do que este produto
-        $connection = ConnectionManager::get('default');
-        $products = $connection->execute('SELECT product.name, AVG(review.rating)
+        $products = $connection->execute('SELECT product.name, AVG(review.rating) as media
         FROM review
         INNER JOIN product ON product.id = review.fk_Product_Id
         GROUP BY product.name
@@ -69,9 +74,8 @@ class ProductController extends AppController
                                         ORDER BY AVG(review.rating) DESC')->fetchAll('assoc');        
 
         $this->set('product', $product);
-        $this->set('product2', $product2);
-        $this->set('review', $review);
         $this->set('products', $products);
+        $this->set('commentsNotesProduct', $commentsNotesProduct);
         
     }
 

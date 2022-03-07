@@ -47,3 +47,21 @@
         <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
     </div>
 </div>
+
+<div class="store index large-9 medium-8 columns content">
+    <h3><?= __('URLs das Lojas que produzem e vendem ao mesmo tempo') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                <th scope="col"><?= $this->Paginator->sort('url') ?></th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($urls as $url): ?>
+            <tr>
+                <td><?= h($url['url']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

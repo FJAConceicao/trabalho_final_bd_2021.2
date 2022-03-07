@@ -22,6 +22,7 @@ class UserController extends AppController
     {
         $user = $this->paginate($this->User);
 
+        /*
         $ade = $this->User->query('SELECT User.city, COUNT(Review.fk_Product_id)
         FROM Review
         INNER JOIN User ON User.id = Review.fk_User_id
@@ -29,6 +30,7 @@ class UserController extends AppController
         GROUP BY User.city
         Order by COUNT(Review.fk_Product_id) DESC
         ');
+        */
 
         //debug($ade);
 
@@ -55,7 +57,7 @@ class UserController extends AppController
             INNER JOIN manufacturer ON manufacturer.id = product.fk_Manufacturer_Id
             INNER JOIN review ON product.id = review.fk_Product_Id
             INNER JOIN user ON user.id = review.fk_User_id
-        WHERE manufacturer.name <> "" AND user.id ='. $id.'
+        WHERE manufacturer.name <> "" AND user.id ='.$id.'
         GROUP BY user.username, manufacturer.name
         ORDER BY user.username
         ')->fetchAll('assoc');

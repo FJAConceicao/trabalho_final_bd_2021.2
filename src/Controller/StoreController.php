@@ -21,42 +21,11 @@ class StoreController extends AppController
      */
     public function index()
     {
+        $connection = ConnectionManager::get('default');
+        
         $store = $this->paginate($this->Store);
 
-
-        $this->set(compact('store'));
-    }
-
-    /**
-     * View method
-     *
-     * @param string|null $id Store id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-    public function view($id = null)
-    {
-        $store = $this->Store->get($id, [
-            'contain' => [],
-        ]);
-
-       // $sells = TableRegistry::get('Store')->find()->join(['sells']);
-       $hostname = "localhost";
-       $banco = "cake_cms";
-       $username = "cakephp";
-       $password = "Cake#123";
-
-       $connection = ConnectionManager::get('default');
-       $results = $connection->execute('SELECT store.name,manufacturer.name, COUNT(*)
-       FROM store
-       INNER JOIN sells ON store.id = sells.fk_Store_Id
-       INNER JOIN product ON product.id = sells.fk_Product_Id 
-       INNER JOIN manufacturer ON manufacturer.id = fk_Manufacturer_id
-       where manufacturer.name <>"" and store.id ='. $id.'
-       GROUP BY store.name,manufacturer.name 
-       Order by COUNT(*) DESC
-       ')->fetchAll('assoc');
-
+        // Query para consultar as lojas que produzem e vendem ao mesmo tempo
         $urls = $connection->execute('SELECT store.url  
         FROM store
         where url <> "" and url is not null
@@ -69,12 +38,39 @@ class StoreController extends AppController
         FROM product
         where source_url <> "" and source_url is not null        
         ')->fetchAll('assoc');
+        
+        $this->set('urls', $urls);
+        $this->set(compact('store'));
+    }
+
+    /**
+     * View method
+     *
+     * @param string|null $id Store id.
+     * @return \Cake\Http\Response|null
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function view($id = null)
+    {
+        $connection = ConnectionManager::get('default');
+
+        $store = $this->Store->get($id, [
+            'contain' => [],
+        ]);
+
+        // Query para consultar as produtoras que mais vendem de uma loja
+        $results = $connection->execute('SELECT store.name,manufacturer.name, COUNT(*)
+        FROM store
+        INNER JOIN sells ON store.id = sells.fk_Store_Id
+        INNER JOIN product ON product.id = sells.fk_Product_Id 
+        INNER JOIN manufacturer ON manufacturer.id = fk_Manufacturer_id
+        where manufacturer.name <>"" and store.id ='.$id.'
+        GROUP BY store.name,manufacturer.name 
+        Order by COUNT(*) DESC
+        ')->fetchAll('assoc');
 
         $this->set('store', $store);
         $this->set('results', $results);
-        $this->set('urls', $urls);
-
-
     }
 
     /**

@@ -22,19 +22,15 @@ class ReviewController extends AppController
     {
         $review = $this->paginate($this->Review);
 
-
         $connection = ConnectionManager::get('default');
         $results = $connection->execute('SELECT user.city, COUNT(review.fk_Product_id)
         FROM review
         INNER JOIN user ON user.id = review.fk_User_id
         where city <> ""
         GROUP BY user.city
-        Order by COUNT(review.fk_Product_id) DESC
-        
-        ')->fetchAll('assoc');
+        Order by COUNT(review.fk_Product_id) DESC')->fetchAll('assoc');
 
         $this->set(compact('review'));
-
         $this->set('results', $results);
 
     }

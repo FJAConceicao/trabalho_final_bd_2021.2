@@ -30,3 +30,23 @@
         </tr>
     </table>
 </div>
+
+<div class="product index large-9 medium-8 columns content">
+    <h3><?= __('Produtos relacionados a este fabricante') ?></h3>
+    <table cellpadding="0" cellspacing="0">
+        <thead>
+            <tr>
+                
+                <th scope="col"><?= $this->Paginator->sort('Produtos') ?></th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($prodsFabricante as $produto): ?>
+            <tr>
+                <td><?= h($produto['product']) ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>

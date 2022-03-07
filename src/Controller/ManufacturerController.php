@@ -22,6 +22,7 @@ class ManufacturerController extends AppController
     {
         $manufacturer = $this->paginate($this->Manufacturer);
 
+        // Querie para buscar a quantidade de produtos de cada produtora
         $connection = ConnectionManager::get('default');
         $results = $connection->execute('SELECT manufacturer.name, COUNT(product.id)
         FROM product
@@ -29,7 +30,6 @@ class ManufacturerController extends AppController
         GROUP BY manufacturer.name
         ORDER BY manufacturer.name
         ')->fetchAll('assoc');
-
 
         //debug($results);
         $this->set(compact('manufacturer'));
@@ -50,7 +50,16 @@ class ManufacturerController extends AppController
             'contain' => [],
         ]);
 
+        // Busca por todos os produtos relacionados ao fabricante com o id passado para a função
+        $connection = ConnectionManager::get('default');
+        $prodsFabricante = $connection->execute('SELECT manufacturer.name as manufacturer, product.name as product
+        FROM product INNER JOIN manufacturer
+        ON product.fk_Manufacturer_Id = manufacturer.id
+        where manufacturer.id = '. $id .'
+        ')->fetchAll('assoc');
+
         $this->set('manufacturer', $manufacturer);
+        $this->set('prodsFabricante', $prodsFabricante);
     }
 
     /**

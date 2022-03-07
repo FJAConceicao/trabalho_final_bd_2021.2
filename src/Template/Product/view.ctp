@@ -54,78 +54,21 @@
         </tr>
     </table>
 </div>
-<div>
-<div class="product index large-9 medium-8 columns content">
-    <h3><?= __('Todos os Produtos Deste Fabricante') ?></h3>
-    <table cellpadding="0" cellspacing="0">
-        <thead>
-            <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('asin') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('brand') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('source_url') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('description') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fk_info_info_PK') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fk_Manufacturer_Id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('categories') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($product2 as $product2): ?>
-            <tr>
-                <td><?= $this->Number->format($product2->id) ?></td>
-                <td><?= h($product2->name) ?></td>
-                <td><?= h($product2->asin) ?></td>
-                <td><?= h($product2->brand) ?></td>
-                <td><?= h($product2->source_url) ?></td>
-                <td><?= h($product2->description) ?></td>
-                <td><?= $this->Number->format($product2->fk_info_info_PK) ?></td>
-                <td><?= $this->Number->format($product2->fk_Manufacturer_Id) ?></td>
-                <td><?= h($product2->categories) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $product2->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $product2->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $product2->id], ['confirm' => __('Are you sure you want to delete # {0}?', $product->id)]) ?>
-                </td>
-            </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
+
 <div class="review index large-9 medium-8 columns content">
-    <h3><?= __('Review') ?></h3>
+    <h3><?= __('Comentários e notas relacionados a este produto') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
             <tr>
-                <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fk_User_Id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('fk_Product_Id') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('date') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('did_purchase') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('rating') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('title') ?></th>
-                <th scope="col"><?= $this->Paginator->sort('text') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Comentário') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('Nota') ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($review as $review): ?>
+            <?php foreach ($commentsNotesProduct as $dataProduct): ?>
             <tr>
-                <td><?= $this->Number->format($review->id) ?></td>
-                <td><?= $this->Number->format($review->fk_User_Id) ?></td>
-                <td><?= $this->Number->format($review->fk_Product_Id) ?></td>
-                <td><?= h($review->date) ?></td>
-                <td><?= h($review->did_purchase) ?></td>
-                <td><?= $this->Number->format($review->rating) ?></td>
-                <td><?= h($review->title) ?></td>
-                <td><?= h($review->text) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $review->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $review->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $review->id], ['confirm' => __('Are you sure you want to delete # {0}?', $review->id)]) ?>
-                </td>
+                <td><?= h($dataProduct['text']) ?></td>
+                <td><?= h($dataProduct['rating']) ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
@@ -133,7 +76,7 @@
 </div>
 </div>
 
-<div class="store index large-9 medium-8 columns content">
+<divl style="float: right;" class=" store index large-9 medium-8 columns content">
     <h3><?= __('Produtos que possuem uma média de reviews melhores do que este produto') ?></h3>
     <table cellpadding="0" cellspacing="0">
         <thead>
@@ -146,7 +89,7 @@
             <?php foreach ($products as $product): ?>
             <tr>
                 <td><?= h($product['name']) ?></td>
-                <td><?= h($product['AVG(review.rating)']) ?></td>
+                <td><?= h($product['media']) ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
