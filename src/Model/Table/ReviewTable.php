@@ -56,14 +56,6 @@ class ReviewTable extends Table
             ->allowEmptyString('fk_Product_Id');
 
         $validator
-            ->dateTime('date')
-            ->allowEmptyDateTime('date');
-
-        $validator
-            ->boolean('did_purchase')
-            ->allowEmptyString('did_purchase');
-
-        $validator
             ->integer('rating')
             ->allowEmptyString('rating');
 

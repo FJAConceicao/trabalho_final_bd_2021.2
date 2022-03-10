@@ -28,9 +28,9 @@
                 <td><?= h($review->title) ?></td>
                 <td><?= h($review->text) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['action' => 'view', $review->Id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $review->Id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $review->Id], ['confirm' => __('Are you sure you want to delete # {0}?', $review->Id)]) ?>
+                    <?= $this->Html->link(__('View'), ['action' => 'view', $review->id]) ?>
+                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $review->id]) ?>
+                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $review->id], ['confirm' => __('Are you sure you want to delete # {0}?', $review->Id)]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

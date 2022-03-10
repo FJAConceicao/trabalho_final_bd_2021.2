@@ -55,7 +55,6 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('Produtora') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('Quantidade') ?></th>
-
             </tr>
         </thead>
         <tbody>

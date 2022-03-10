@@ -17,8 +17,6 @@
         <?php
             echo $this->Form->control('fk_User_Id');
             echo $this->Form->control('fk_Product_Id');
-            echo $this->Form->control('date', ['empty' => true]);
-            echo $this->Form->control('did_purchase');
             echo $this->Form->control('rating');
             echo $this->Form->control('title');
             echo $this->Form->control('text');

@@ -31,8 +31,6 @@ class SellsTable extends Table
         parent::initialize($config);
 
         $this->setTable('sells');
-        $this->setDisplayField('id');
-        $this->setPrimaryKey('id');
     }
 
     /**
@@ -43,10 +41,6 @@ class SellsTable extends Table
      */
     public function validationDefault(Validator $validator)
     {
-        $validator
-            ->integer('id')
-            ->allowEmptyString('id', null, 'create');
-
         $validator
             ->integer('fk_Product_Id')
             ->allowEmptyString('fk_Product_Id');

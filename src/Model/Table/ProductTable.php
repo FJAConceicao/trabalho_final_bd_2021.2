@@ -9,6 +9,8 @@ use Cake\Validation\Validator;
 /**
  * Product Model
  *
+ * @property \App\Model\Table\CategorieTable&\Cake\ORM\Association\BelongsToMany $Categorie
+ *
  * @method \App\Model\Entity\Product get($primaryKey, $options = [])
  * @method \App\Model\Entity\Product newEntity($data = null, array $options = [])
  * @method \App\Model\Entity\Product[] newEntities(array $data, array $options = [])
@@ -33,6 +35,12 @@ class ProductTable extends Table
         $this->setTable('product');
         $this->setDisplayField('name');
         $this->setPrimaryKey('id');
+
+        $this->belongsToMany('Categorie', [
+            'foreignKey' => 'product_id',
+            'targetForeignKey' => 'categorie_id',
+            'joinTable' => 'product_categorie',
+        ]);
     }
 
     /**
@@ -79,12 +87,6 @@ class ProductTable extends Table
         $validator
             ->integer('fk_Manufacturer_Id')
             ->allowEmptyString('fk_Manufacturer_Id');
-
-        $validator
-            ->scalar('categories')
-            ->maxLength('categories', 2048)
-            ->requirePresence('categories', 'create')
-            ->notEmptyString('categories');
 
         return $validator;
     }

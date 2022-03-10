@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\ProductTable;
+use App\Model\Table\CategorieTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\ProductTable Test Case
+ * App\Model\Table\CategorieTable Test Case
  */
-class ProductTableTest extends TestCase
+class CategorieTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\ProductTable
+     * @var \App\Model\Table\CategorieTable
      */
-    public $Product;
+    public $Categorie;
 
     /**
      * Fixtures
@@ -23,8 +23,8 @@ class ProductTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Product',
         'app.Categorie',
+        'app.Product',
     ];
 
     /**
@@ -35,8 +35,8 @@ class ProductTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Product') ? [] : ['className' => ProductTable::class];
-        $this->Product = TableRegistry::getTableLocator()->get('Product', $config);
+        $config = TableRegistry::getTableLocator()->exists('Categorie') ? [] : ['className' => CategorieTable::class];
+        $this->Categorie = TableRegistry::getTableLocator()->get('Categorie', $config);
     }
 
     /**
@@ -46,7 +46,7 @@ class ProductTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Product);
+        unset($this->Categorie);
 
         parent::tearDown();
     }

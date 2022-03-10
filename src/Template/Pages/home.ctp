@@ -40,6 +40,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <div class="container clearfix">
         <?= $this->fetch('content') ?>
     </div>
+    <div style="display:flex; flex:1; justify-content:center; align-items: center; flex-direction:column;">
+    <h3 style="margin-top:18px"> Lojas de Cerveja, Licor e Review de Vinhos </h3>
+    <h5 style="margin-top:8px"> Uma lista com mais de 2 mil reviews de cerveja, licor e vinhos </h5>
+    <img src="https://i1.wp.com/www.wine.com.br/winepedia/wp-content/uploads/2018/10/Como-servir-vinhos.jpg?resize=1180%2C517&ssl=1" alt="Girl in a jacket" width="900" height="800">
+
+    </div>
     <footer>
     </footer>
 </body>

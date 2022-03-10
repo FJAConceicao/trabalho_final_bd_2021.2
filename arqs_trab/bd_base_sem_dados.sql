@@ -20,13 +20,13 @@ CREATE TABLE user (
     username varchar(256), 
     city varchar(256), 
     province varchar(256) 
-) AUTO_INCREMENT = 1; 
+) AUTO_INCREMENT=1; 
  
 CREATE TABLE manufacturer ( 
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 
     name VARCHAR(256), 
     url VARCHAR(2048) 
-) AUTO_INCREMENT = 1; 
+) AUTO_INCREMENT=1; 
  
 CREATE TABLE store ( 
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT, 

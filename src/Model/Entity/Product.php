@@ -14,7 +14,8 @@ use Cake\ORM\Entity;
  * @property string|null $description
  * @property int|null $fk_info_info_PK
  * @property int|null $fk_Manufacturer_Id
- * @property string $categories
+ *
+ * @property \App\Model\Entity\Categorie[] $categorie
  */
 class Product extends Entity
 {
@@ -35,6 +36,6 @@ class Product extends Entity
         'description' => true,
         'fk_info_info_PK' => true,
         'fk_Manufacturer_Id' => true,
-        'categories' => true,
+        'categorie' => true,
     ];
 }

@@ -9,8 +9,8 @@
         <li class="heading"><?= __('Actions') ?></li>
         <li><?= $this->Form->postLink(
                 __('Delete'),
-                ['action' => 'delete', $review->Id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $review->Id)]
+                ['action' => 'delete', $review->id],
+                ['confirm' => __('Are you sure you want to delete # {0}?', $review->id)]
             )
         ?></li>
         <li><?= $this->Html->link(__('List Review'), ['action' => 'index']) ?></li>
@@ -23,8 +23,6 @@
         <?php
             echo $this->Form->control('fk_User_Id');
             echo $this->Form->control('fk_Product_Id');
-            echo $this->Form->control('date', ['empty' => true]);
-            echo $this->Form->control('did_purchase');
             echo $this->Form->control('rating');
             echo $this->Form->control('title');
             echo $this->Form->control('text');

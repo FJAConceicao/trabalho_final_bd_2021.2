@@ -4,12 +4,12 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Sell Entity
+ * ProductCategorie Entity
  *
- * @property int|null $fk_Product_Id
- * @property int|null $fk_Store_Id
+ * @property int|null $product_fk
+ * @property int|null $categorie_fk
  */
-class Sell extends Entity
+class ProductCategorie extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -21,7 +21,7 @@ class Sell extends Entity
      * @var array
      */
     protected $_accessible = [
-        'fk_Product_Id' => true,
-        'fk_Store_Id' => true,
+        'product_fk' => true,
+        'categorie_fk' => true,
     ];
 }

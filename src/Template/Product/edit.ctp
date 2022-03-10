@@ -14,6 +14,8 @@
             )
         ?></li>
         <li><?= $this->Html->link(__('List Product'), ['action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List Categorie'), ['controller' => 'Categorie', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('New Categorie'), ['controller' => 'Categorie', 'action' => 'add']) ?></li>
     </ul>
 </nav>
 <div class="product form large-9 medium-8 columns content">
@@ -28,7 +30,7 @@
             echo $this->Form->control('description');
             echo $this->Form->control('fk_info_info_PK');
             echo $this->Form->control('fk_Manufacturer_Id');
-            echo $this->Form->control('categories');
+            echo $this->Form->control('categorie._ids', ['options' => $categorie]);
         ?>
     </fieldset>
     <?= $this->Form->button(__('Submit')) ?>
