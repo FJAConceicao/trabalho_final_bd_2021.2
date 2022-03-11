@@ -34,6 +34,20 @@ reinicie o servidor mysql:
 ```sh
 sudo systemctl restart mysql
 ```
+Logue no mysql com:
+```
+sudo mysql -u root -p
+```
+Crie um usuário e uma senha no myqsl para o projeto:
+```
+CREATE USER 'cakephp'@'localhost' IDENTIFIED BY 'Cake#123';
+GRANT ALL PRIVILEGES ON *.* TO 'cakephp'@'localhost';
+FLUSH PRIVILEGES;
+```
+Saia do mysql digitando quit e clicando em enter. Importe o arquivo para criação das tabelas e população dos dados com o seguinte comando:
+```
+mysql -u cakephp -p cake_cms < arqs_trab/sql/sql_bd_vinhos_completo.sql
+```
 ### Parte 3: php
 Adicione os repositórios
 ```sh
