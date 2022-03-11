@@ -74,7 +74,7 @@ E veja se está funcionando no [localhost](http://localhost/index.php)
 Se os passos acima foram feitos com sucesso, agora é necessário instalar e configurar o Cake PHP.
 Mas antes, no arquivo site_vinhos/config/app_local.php, coloquem o login e senha do usuário do banco de dados.
 O root é aceito:
-![Exemplo de login e senha no app_local.php](https://user-images.githubusercontent.com/51456769/121438851-25e67800-c95b-11eb-9ab6-560686b531b7.png)
+![Login e senha no app_local.php](https://user-images.githubusercontent.com/32593546/157821864-b5d96ea2-022a-446b-a068-679f9b54e9a7.png)
 
 Precisamos agora instalar o [composer](http://localhost/index.php), ele é apenas necessário para construir a estrutura de arquivos.
 É necessário entrar no site e pegar o código atualizado lá. Quando o composer estiver instalado, execute o comando:
